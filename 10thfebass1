@@ -1,0 +1,42 @@
+/* YALLA GANESH-ADCELR */
+#include<stdio.h>
+#include<conio.h>
+#include<string.h>
+int main()
+{
+    char data[200], fname[30];
+    FILE *fp;
+    printf("Enter the Name of File to Create: ");
+    gets(fname);
+    fp = fopen(fname, "r");
+    if(fp==NULL)
+    {
+        printf("\nFile Doesn't Exist!");
+        printf("\n\nCreating the File...\n");
+        fp = fopen(fname, "w");
+        if(fp==NULL)
+            printf("\n Error to creating the file..");
+        else
+            printf("\n File Created Successfully!\n");
+    }
+    fclose(fp);
+    fp = fopen(fname, "w");
+    if(fp==NULL)
+        printf("\n Error to opening the file..");
+    else
+    {
+        printf("\n Enter the Data: ");
+        gets(data);
+        while(strlen(data)>0)
+        {
+            fputs(data, fp);
+            fputs("\n", fp);
+            gets(data);
+        }
+        printf("\n Data is Written into the File Successfully!");
+    
+    }
+    fclose(fp);
+    getch();
+    return 0;
+}
